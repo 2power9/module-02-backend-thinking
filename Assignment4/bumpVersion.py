@@ -27,12 +27,16 @@ def getVersion(line):
     if len(version.split('.')) < 3: return ''
     return version
 
-def pump(oldVersion):
+def bump(oldVersion):
     parts = list(map(int, oldVersion.split('.')))
     major, minor, patch = parts[0], parts[1], parts[2]
     for i in range(1, len(argv) - 1):
-        if argv[i] == '--major': major += 1
-        elif argv[i] == '--minor': minor += 1
+        if argv[i] == '--major':
+            major += 1
+            patch = minor = 0
+        elif argv[i] == '--minor':
+            minor += 1
+            patch = 0
         elif argv[i] == '--patch': patch += 1
 
     newVersion = "%d.%d.%d" % (major, minor, patch)
@@ -48,7 +52,7 @@ def processFile(filename):
             for i in range(len(data)):
                 version = getVersion(data[i])
                 if version != '':
-                    data[i] = data[i].replace(version, pump(version))
+                    data[i] = data[i].replace(version, bump(version))
                     break
         # write file with the new version
         with open(filename, 'w') as file:
