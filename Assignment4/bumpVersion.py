@@ -7,9 +7,9 @@ class VERSION(IntEnum):
     MAJOR = 0
     MINOR = 1
     PATCH = 2
-    NUM_PARAMS = 3
 
 
+NUM_PARAMS = 3
 SPLIT_POINT = '.'
 
 
@@ -18,21 +18,21 @@ def printUsage():
     exit(2)
 
 
-def checkCommandLine():
+def checkCommandLine(argv):
     # check the command line arguments
-    needBump = [False for _ in range(VERSION.NUM_PARAMS)]
-    arguments = {'--major': 0, '--minor': 1, '--patch': 2}
+    needBump = [False for _ in range(NUM_PARAMS)]
+    allowedArguments = {'--major': VERSION.MAJOR, '--minor': VERSION.MINOR, '--patch': VERSION.PATCH}
     if len(argv) < 3: printUsage()
     for i in range(1, len(argv) - 1):
-        if argv[i] not in arguments:
+        if argv[i] not in allowedArguments:
             printUsage()
-        needBump[arguments[argv[i]]] = True
+        needBump[allowedArguments[argv[i]]] = True
     filename = argv[-1]
     return filename, needBump
 
 
 def isValidVersion(version):
-    return len(list(version.split(SPLIT_POINT))) >= VERSION.NUM_PARAMS
+    return len(list(version.split(SPLIT_POINT))) >= NUM_PARAMS
 
 
 def bump(oldVersion, needBump):
@@ -55,7 +55,7 @@ def bump(oldVersion, needBump):
 
 def findVersion(text):
     # find valid version in text
-    regex = compile(r'([\d][.\d]+)')
+    regex = compile(r'([\d][%s\d]+)' % (SPLIT_POINT))
     try:
         version = regex.search(text).group()
         if isValidVersion(version):
@@ -90,5 +90,5 @@ def bumpVersionInFile(filename, needBump):
 
 
 if __name__ == '__main__':
-    filename, needBump = checkCommandLine()
+    filename, needBump = checkCommandLine(argv)
     bumpVersionInFile(filename, needBump)
