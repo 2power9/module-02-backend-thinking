@@ -55,7 +55,7 @@ def bump(oldVersion, needBump):
 
 def findVersion(text):
     # find valid version in text
-    regex = compile(r'([\d][%s\d]+)' % (SPLIT_POINT))
+    regex = compile(r'([\d][%s\d]+)' % SPLIT_POINT)
     try:
         version = regex.search(text).group()
         if isValidVersion(version):
