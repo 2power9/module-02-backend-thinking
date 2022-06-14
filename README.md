@@ -42,5 +42,23 @@ Requirement: customize and demo terminal
 #### Output:
 That input file but with version string modified
 
+### Analysis
+
+- There are 3 parts needed to pump → add the arguments `--patch`, `--minor` and `--major` for script.
+- Also, `major` is the largest change → if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, `patch` and `minor` are returned into 0.
+- Then, `patch` is the second-largest change → if `patch` is changed, `minor` is returned into 0.
+- Finally, if version has more parts (> 3) → we just make change for the first 3 parts.
+
+### Solution
+
+Solution in directory `assignment4`
+
+#### Demo
+
+|![](https://i.imgur.com/a0Lqram.png)|
+|:---:|
+| Demo bump version |
+
+
 ## Assignment 5️⃣
 
