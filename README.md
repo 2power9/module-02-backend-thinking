@@ -21,6 +21,12 @@ Requirement: customize and demo terminal
 
 ## Assignment 3️⃣
 
+|![](https://i.imgur.com/EraArVM.png)|
+|:---:|
+| Demo using `vps` |
+
+## Assignment 4️⃣
+
 ### Requirement
 - Read a config file, find the current version appear in the find (there will be only one), print it out
 - Try to "bump" the version to the next:
@@ -36,6 +42,5 @@ Requirement: customize and demo terminal
 #### Output:
 That input file but with version string modified
 
-## Assignment 4️⃣
-
 ## Assignment 5️⃣
+
