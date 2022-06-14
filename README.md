@@ -45,7 +45,7 @@ That input file but with version string modified
 ### Analysis
 
 - There are 3 parts needed to pump → add the arguments `--patch`, `--minor` and `--major` for script.
-- Also, `major` is the largest change → if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, if `major` is changed, `patch` and `minor` are returned into 0.
+- Also, `major` is the largest change → if `major` is changed, `patch` and `minor` are returned into 0.
 - Then, `patch` is the second-largest change → if `patch` is changed, `minor` is returned into 0.
 - Finally, if version has more parts (> 3) → we just make change for the first 3 parts.
 
