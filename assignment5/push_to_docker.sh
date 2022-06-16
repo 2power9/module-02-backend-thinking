@@ -1,0 +1,1 @@
+docker build -t nhutnh3/assigment5:1.0.0 .

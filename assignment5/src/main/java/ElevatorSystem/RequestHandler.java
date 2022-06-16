@@ -1,11 +1,14 @@
 package ElevatorSystem;
 
+import org.springframework.stereotype.Component;
+
 import java.util.concurrent.LinkedBlockingQueue;
 
-public class RequestController {
+@Component
+public class RequestHandler {
     private LinkedBlockingQueue<Request> requests;
 
-    public RequestController() {
+    public RequestHandler() {
         requests = new LinkedBlockingQueue<>();
     }
 

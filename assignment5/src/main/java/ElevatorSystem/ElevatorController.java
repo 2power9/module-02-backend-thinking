@@ -7,29 +7,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
-
-import static ElevatorSystem.Direction.STAY;
 
 @RestController
 public class ElevatorController {
-    RequestController controller;
+    @Autowired
+    RequestHandler requestHandler;
     @Autowired
     Elevator elevator;
 
-    public ElevatorController() {
-        controller = new RequestController();
-        elevator = new Elevator();
-
+    @PostConstruct
+    public void init() {
         Thread runThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 System.out.println("[ELEVATOR STATUS] Running");
 
                 while (true) {
-                    if (!controller.isEmpty()) {
+                    if (!requestHandler.isEmpty()) {
                         try {
-                            Request request = controller.takeRequest();
+                            Request request = requestHandler.takeRequest();
                             elevator.getRequest(request);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
@@ -37,12 +35,12 @@ public class ElevatorController {
                     }
 
 //                    if (elevator.action() != STAY) {
-                        elevator.goToNewFloor();
-                        try {
-                            TimeUnit.SECONDS.sleep(2);
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+                    elevator.goToNewFloor();
+                    try {
+                        TimeUnit.SECONDS.sleep(2);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
 //                    }
                 }
             }
@@ -56,7 +54,7 @@ public class ElevatorController {
                                    @RequestParam(value = "destination", defaultValue = "1") int destination)
                                     throws InterruptedException {
 
-        controller.addRequest(new Request(departure, destination));
+        requestHandler.addRequest(new Request(departure, destination));
 
         return ResponseEntity.status(HttpStatus.OK).body(new Response(departure, destination));
     }
