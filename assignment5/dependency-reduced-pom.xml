@@ -17,7 +17,7 @@
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <transformers>
                 <transformer>
-                  <mainClass>elevatorSystem.Main</mainClass>
+                  <mainClass>ElevatorSystem.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>

@@ -1,4 +1,4 @@
-package elevatorSystem;
+package ElevatorSystem;
 
 enum Direction {
     UP(0), 
