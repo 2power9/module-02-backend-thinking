@@ -41,7 +41,6 @@ public class ElevatorController {
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-//                    }
                 }
             }
         });
@@ -49,10 +48,20 @@ public class ElevatorController {
         runThread.start();
     }
 
+    boolean isOutOfBound(int floor) {
+        return floor < 1 || floor > elevator.getNumFloors();
+    }
+
     @GetMapping("/elevator")
     public ResponseEntity greeting(@RequestParam(value = "departure", defaultValue = "1") int departure,
                                    @RequestParam(value = "destination", defaultValue = "1") int destination)
                                     throws InterruptedException {
+
+        if (isOutOfBound(departure))
+            return ResponseEntity.status(HttpStatus.OK).body("Departure floor is invalid.");
+
+        if (isOutOfBound(destination))
+            return ResponseEntity.status(HttpStatus.OK).body("Destination floor is invalid.");
 
         requestHandler.addRequest(new Request(departure, destination));
 

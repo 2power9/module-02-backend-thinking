@@ -1,0 +1,12 @@
+[FLOOR 1] Passenger(s) check-in.
+[FLOOR STATUS] from 1 to 2
+[FLOOR STATUS] from 2 to 3
+[FLOOR STATUS] from 3 to 4
+[FLOOR STATUS] from 4 to 5
+[FLOOR 5] Passenger(s) check-out.
+[FLOOR STATUS] from 5 to 4
+[FLOOR STATUS] from 4 to 3
+[FLOOR 3] Passenger(s) check-in.
+[FLOOR STATUS] from 3 to 2
+[FLOOR STATUS] from 2 to 1
+[FLOOR 1] Passenger(s) check-out.

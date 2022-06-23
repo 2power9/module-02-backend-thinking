@@ -108,4 +108,12 @@ public class Elevator {
 
         return STAY;
     }
+
+    int getNumFloors() {
+        return numFloors;
+    }
+
+    int getCurrentFloor() {
+        return currentFloor;
+    }
 }
